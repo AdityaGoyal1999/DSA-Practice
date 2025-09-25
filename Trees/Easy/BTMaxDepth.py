@@ -1,5 +1,5 @@
 """
-Calculate the height of the tree.
+Maximum Depth of Binary Tree
 """
 from typing import Self
 
@@ -11,19 +11,14 @@ class TreeNode:
 
 # O(n) runtime
 # O(n) space
-def getTreeHeight(node):
-    
-    if not node:
+def getDepth(node):
+    if node is None:
         return 0
     else:
-        # left subtree
-        left_height = getTreeHeight(node.left)
+        left_depth = getDepth(node.left)
+        right_depth = getDepth(node.right)
 
-        # right subtree
-        right_height = getTreeHeight(node.right)
-
-        return 1 + max(left_height, right_height)
-    
+        return 1 + max(left_depth, right_depth)
 
 # 1
 #   2
@@ -43,6 +38,4 @@ a.right = TreeNode(3)
 a.right.left = TreeNode(6)
 a.right.right = TreeNode(7)
 
-print(getTreeHeight(a) == 3)
-print(getTreeHeight(a.right.right) == 1)
-print(getTreeHeight(a.left.left.left) == 0)
+print(getDepth(a) == 3)
