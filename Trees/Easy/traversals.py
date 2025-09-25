@@ -6,6 +6,7 @@ Different traversals for Trees
 """
 
 from typing import Self
+from collections import deque
 
 class TreeNode:
 
@@ -21,6 +22,9 @@ class Traversal:
         self.tree = node
 
     def inorder(self) -> list:
+        # O(n) runtime
+        # O(n) space
+
         result = []
 
         def traverse(node):
@@ -35,6 +39,9 @@ class Traversal:
         return result
     
     def preorder(self) -> list:
+        # O(n) runtime
+        # O(n) space
+
         result = []
 
         def traverse(node):
@@ -49,6 +56,9 @@ class Traversal:
         return result
     
     def postorder(self) -> list:
+        # O(n) runtime
+        # O(n) space
+
         result = []
 
         def traverse(node):
@@ -58,6 +68,31 @@ class Traversal:
                 traverse(node.left)
                 traverse(node.right)
                 result.append(node.val)
+        
+        traverse(self.tree)
+        return result
+    
+    def levelOrderTraversal(self) -> list:
+        # O(n) runtime
+        # O(n) space
+
+        result = []
+
+        def traverse(node):
+            queue = deque()
+
+            queue.append(node)
+            while queue:
+                length = len(queue)
+
+                for _ in range(length):
+                    node = queue.popleft()
+                    result.append(node.val)
+
+                    if node.left is not None:
+                        queue.append(node.left)
+                    if node.right is not None:
+                        queue.append(node.right)
         
         traverse(self.tree)
         return result
@@ -84,3 +119,4 @@ traversal = Traversal(a)
 print("Inorder:", traversal.inorder())
 print("Preorder:", traversal.preorder())
 print("Postorder:", traversal.postorder())
+print("Level Order Traversal:", traversal.levelOrderTraversal())
