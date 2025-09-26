@@ -41,12 +41,25 @@ def reverseLL(ll: Node | None) -> Node | None:
     
     return prev
 
-# TODO: implement recursive solution
+# O(n)
+# O(n)
+
+# This solution is not space optimal but good to understand recursion.
+def reverseLLRecurse(ll: Node | None) -> Node | None:
+    if not ll or ll.next is None:
+        return ll
+
+    rest = reverseLLRecurse(ll.next)
+    
+    ll.next.next = ll
+    ll.next = None
+
+    return rest
 
 nums = [1, 2, 3, 4]
 ll = getLinkedList(nums)
 
-new_ll = reverseLL(ll)
+new_ll = reverseLLRecurse(ll)
 
 curr = new_ll
 
