@@ -3,7 +3,6 @@ Implement selection sort
 
 Select the minimum at each pass and place at front.
 """
-
 def selectionSort(arr: list) -> list:
     
     n = len(arr)

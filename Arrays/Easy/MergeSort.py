@@ -4,6 +4,8 @@ Implement merge sort algorithm.
 Divide and conquer algorithm where we divide, sort the halves and merge.
 """
 
+# TODO: Do it in-place and make it faster
+
 def merge(arr1: list, arr2: list) -> list:
     arr = []
 
