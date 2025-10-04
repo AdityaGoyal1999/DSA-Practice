@@ -28,6 +28,9 @@ class Stack:
         
         return self.stack[-1]
 
+    def __len__(self) -> int:
+        return len(self.stack)
+
 
 nums = [1, 2, 3, 4]
 stack = Stack(nums)

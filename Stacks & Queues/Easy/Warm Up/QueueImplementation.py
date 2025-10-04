@@ -19,6 +19,7 @@ class Queue:
     def __init__(self, nums: list) -> None:
         self.front = Node(-1)
         self.back = Node(-1)
+        self.size = 0
 
         curr = self.front
         for num in nums:
@@ -28,6 +29,8 @@ class Queue:
             curr.next = new_node
 
             curr = curr.next
+
+            self.size += 1
         
         curr.next = self.back
         self.back.prev = curr
@@ -45,6 +48,8 @@ class Queue:
         new_node.next = curr
         curr.prev = new_node
 
+        self.size += 1
+
     
     def dequeue(self) -> int | None:
 
@@ -57,11 +62,19 @@ class Queue:
 
         prev.next = next
         next.prev = prev
+        self.size -= 1
 
         return node.val
+
+    def isEmpty(self) -> bool:
+        return self.front.next is self.back
+
+    def __len__(self):
+        return self.size
 
 
 queue = Queue([1, 2, 3, 4, 5])
 print(queue.dequeue() == 1)
 print(queue.enqueue(10) is None)
 print(queue.dequeue() == 2)
+print(len(queue) == 4)
