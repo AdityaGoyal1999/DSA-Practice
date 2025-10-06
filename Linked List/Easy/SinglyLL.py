@@ -22,6 +22,11 @@ def getLinkedList(nums):
     
     return dummyHead.next
 
+def printLinkedList(ll: Node | None) -> None:
+    curr = ll
+    while curr:
+        print(curr.val)
+        curr = curr.next
 
 nums = [1, 2, 3, 4, 5, 6]
 print(getLinkedList(nums))
