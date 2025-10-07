@@ -1,5 +1,5 @@
 """
-Find the LCA (Lowest Common Ancestor) in BST
+Find the LCA (Lowest Common Ancestor) in Binary Tree
 
 Example: [3, 5, 1, 6, 2, 0, 8], p = 5, q = 1 → 3
 """
@@ -15,25 +15,25 @@ class TreeNode:
 
 # O(n)
 # O(n)
-def findLCA(node: TreeNode, p: int, q: int) -> int:
+
+def findLCA(node: TreeNode, p: int, q: int) -> TreeNode | None:
     if node is None:
-        return -1
+        return None
     
     if node.val == p or node.val == q:
-        return node.val
-
+        return node
+    
     left = findLCA(node.left, p, q)
     right = findLCA(node.right, p, q)
 
-    if left != -1 and right != -1:
-        return node.val
-    
-    if left != -1:
+    if left is not None and right is not None:
+        return node
+    elif left is not None:
         return left
-    if right != -1:
+    elif right is not None:
         return right
-    
-    return -1
+    else:
+        return None
 
 # 4
 #   2
@@ -53,4 +53,8 @@ a.right = TreeNode(6)
 a.right.left = TreeNode(5)
 a.right.right = TreeNode(7)
 
-print(findLCA(a, 7, 2))
+# Test cases
+print("LCA of 7 and 2:", findLCA(a, 7, 2).val)  # Should be 4
+print("LCA of 1 and 3:", findLCA(a, 1, 3).val)  # Should be 2
+print("LCA of 5 and 7:", findLCA(a, 5, 7).val)  # Should be 6
+print("LCA of 1 and 5:", findLCA(a, 1, 5).val)  # Should be 2
