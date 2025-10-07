@@ -37,6 +37,29 @@ class Traversal:
         
         traverse(self.tree)
         return result
+
+    def inorderIterative(self) -> list:
+        # O(n) runtime - visit each node once
+        # O(n) space - stack can hold up to h nodes (height of tree)
+        
+        result = []
+        stack = []
+        current = self.tree
+        
+        while stack or current:
+            # Go to the leftmost node
+            while current:
+                stack.append(current)
+                current = current.left
+            
+            # Process the current node
+            current = stack.pop()
+            result.append(current.val)
+            
+            # Move to right subtree
+            current = current.right
+        
+        return result
     
     def preorder(self) -> list:
         # O(n) runtime
@@ -116,7 +139,8 @@ a.right.left = TreeNode(6)
 a.right.right = TreeNode(7)
 
 traversal = Traversal(a)
-print("Inorder:", traversal.inorder())
+print("Inorder (Recursive):", traversal.inorder())
+print("Inorder (Iterative):", traversal.inorderIterative())
 print("Preorder:", traversal.preorder())
 print("Postorder:", traversal.postorder())
 print("Level Order Traversal:", traversal.levelOrderTraversal())
