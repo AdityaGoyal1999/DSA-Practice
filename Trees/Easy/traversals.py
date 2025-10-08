@@ -78,6 +78,35 @@ class Traversal:
         traverse(self.tree)
         return result
     
+    def preorderIterative(self) -> list:
+        # O(n) runtime - visit each node once
+        # O(n) space - stack can hold up to h nodes (height of tree)
+        
+        result = []
+        stack = []
+        current = self.tree
+        
+        while stack or current:
+            # Process current node first (Root)
+            if current:
+                result.append(current.val)
+                
+                # Push right child first, then left
+                # This ensures left is processed before right
+                if current.right:
+                    stack.append(current.right)
+                if current.left:
+                    stack.append(current.left)
+                
+                # Move to left child (or pop from stack)
+                current = current.left
+            else:
+                # Pop from stack when no more left children
+                current = stack.pop()
+        
+        return result
+
+
     def postorder(self) -> list:
         # O(n) runtime
         # O(n) space
@@ -141,6 +170,7 @@ a.right.right = TreeNode(7)
 traversal = Traversal(a)
 print("Inorder (Recursive):", traversal.inorder())
 print("Inorder (Iterative):", traversal.inorderIterative())
-print("Preorder:", traversal.preorder())
+print("Preorder (Recursive):", traversal.preorder())
+print("Preorder (Iterative):", traversal.preorderIterative())
 print("Postorder:", traversal.postorder())
 print("Level Order Traversal:", traversal.levelOrderTraversal())
