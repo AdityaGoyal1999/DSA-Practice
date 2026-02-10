@@ -31,6 +31,7 @@ def topoSort(edges, V):
     # return stack - linear ordering of nodes
     return stack
 
+# O(V + E) - O(V + E)
 
 edges = [[5, 0], [4, 0], [4, 1], [5, 2], [2, 3], [3, 1]]
 print(topoSort(edges, 6))
